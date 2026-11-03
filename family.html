@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Family Room | ReadyMed Visit Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="family">
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" aria-label="Back to the portal home"><img src="assets/readymed_logo.png" alt="ReadyMed Medical Solutions"></a>
+    <div class="divider"></div>
+    <div><div class="title">Family Room</div><div class="sub">Powered by HomeStar</div></div>
+  </div>
+  <div class="right">
+    <span class="pill demo">Simulated demo</span>
+    <div class="chip">Margaret D. <span>(demo patient)</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="col main">
+    <div id="incoming" aria-live="assertive"></div>
+    <div id="visit-live" aria-live="polite"></div>
+
+    <section class="card" aria-labelledby="visit-h">
+      <h2 id="visit-h">Visit Margaret</h2>
+      <div class="actions">
+        <div class="action">
+          <button class="btn primary" data-action="request-visit" type="button">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+            Request a visit
+          </button>
+          <div class="note">Rings her bedside. She just says "answer."</div>
+        </div>
+        <div class="action">
+          <button class="btn outline" data-action="checkin" type="button">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#15171A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            Quick check-in
+          </button>
+          <div class="note">A short look-in. She hears a chime first and can say "not now." <span class="pill exp">Simulated</span></div>
+        </div>
+        <div class="action">
+          <button class="btn" data-action="biometrics" type="button">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#15171A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Take Biometrics
+          </button>
+          <div class="note"><span class="pill exp">Experimental</span> Camera estimate, about 30 seconds.</div>
+        </div>
+      </div>
+      <div id="action-result" class="status-line" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="alerts-h">
+      <div class="row-between" style="margin-bottom:16px">
+        <h2 id="alerts-h" style="margin:0">Alerts</h2>
+        <div class="small muted" id="alerts-count"></div>
+      </div>
+      <div id="alerts"></div>
+    </section>
+  </div>
+
+  <div class="col side">
+    <section class="card" id="status"></section>
+    <section class="card" id="bio"></section>
+    <section class="card" id="visits"></section>
+  </div>
+</main>
+
+<footer>
+  No app to download. Open the link, tap a button, and you're in. This is a simulated demo: sensors, alerts and readings are simulated.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

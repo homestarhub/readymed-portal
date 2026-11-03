@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinician Room | ReadyMed Visit Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="clinician">
+<header class="topbar">
+  <div class="brand">
+    <a href="index.html" aria-label="Back to the portal home"><img src="assets/readymed_logo.png" alt="ReadyMed Medical Solutions"></a>
+    <div class="divider"></div>
+    <div><div class="title">Clinician Room</div><div class="sub">Powered by HomeStar</div></div>
+  </div>
+  <div class="right">
+    <span class="pill demo">Simulated demo</span>
+    <div class="chip">Demo clinician <span>(signed in)</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="col list">
+    <section class="card patients" id="patients" aria-label="My patients"></section>
+    <div class="note" style="padding:0 4px">Demo patients. A clinician sees only the patients assigned to them. Only Margaret D. is tied to the demo device.</div>
+  </div>
+
+  <div class="col main">
+    <div id="incoming" aria-live="assertive"></div>
+    <div id="visit-live" aria-live="polite"></div>
+
+    <section class="card" aria-labelledby="sel-h">
+      <h2 id="sel-h"><span id="sel-name">Margaret D.</span></h2>
+      <div class="actions" style="gap:12px">
+        <button class="btn primary" style="flex:1 1 180px" data-action="request-visit" type="button">Request a visit</button>
+        <button class="btn outline" style="flex:1 1 180px" data-action="checkin" type="button">Remote check-in</button>
+        <button class="btn" style="flex:1 1 180px" data-action="reminder-open" type="button">Send a reminder</button>
+        <button class="btn" style="flex:1 1 180px" data-action="biometrics" type="button">Take Biometrics <span class="pill exp">Experimental</span></button>
+      </div>
+      <div id="reminder-box" hidden style="margin-top:16px">
+        <label for="reminder-text" class="small" style="font-weight:600;display:block;margin-bottom:6px">What should the device say?</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <input id="reminder-text" type="text" maxlength="140" style="flex:1 1 260px;padding:12px;border:1px solid var(--border-strong);border-radius:10px;font:inherit" value="It's time for your afternoon medication.">
+          <button class="btn primary small" data-action="reminder-send" type="button">Send</button>
+        </div>
+      </div>
+      <div class="note" style="margin-top:12px">At the bedside nothing is touched. She hears the chime and says "answer" or "not now." A reminder is spoken aloud by the device. Visits ring the real demo device when a channel is set; everything else here is simulated.</div>
+      <div id="action-result" class="status-line" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="alerts-h">
+      <div class="row-between" style="margin-bottom:8px">
+        <h2 id="alerts-h" style="margin:0">Alerts</h2>
+        <div class="small muted" id="alerts-count"></div>
+      </div>
+      <div id="alerts"></div>
+    </section>
+  </div>
+
+  <div class="col side">
+    <section class="card" id="minutes"></section>
+    <section class="card" id="calllog"></section>
+    <section class="card" id="bio"></section>
+    <button class="btn dark" data-action="omnimd" type="button">Open OmniMD for vitals and billing</button>
+  </div>
+</main>
+
+<footer>
+  This is a simulated demo: patients, sensors, alerts, readings and minutes are simulated. Vitals and billing live in OmniMD.
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
