@@ -149,7 +149,25 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(function () { t.hidden = true; }, 4500);
   }
-  function result(msg) { var r = $('action-result'); if (r) { r.textContent = msg; } }
+  function result(msg, joinUrl) {
+    var r = $('action-result');
+    if (!r) { return; }
+    r.textContent = msg;
+    if (joinUrl) {
+      var a = document.createElement('a');
+      a.href = joinUrl;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.className = 'btn primary join-video';
+      a.textContent = 'Join the video';
+      a.style.display = 'inline-block';
+      a.style.marginTop = '10px';
+      a.style.fontSize = '18px';
+      a.style.padding = '14px 22px';
+      r.appendChild(document.createElement('br'));
+      r.appendChild(a);
+    }
+  }
 
   // ------------------------------------------------------------------ ntfy transport
   function send(topic, body) {
@@ -235,7 +253,7 @@
       });
       if (roomOK()) { window.open(settings.room, '_blank', 'noopener'); }
       state.live = { patient: pid, start: Date.now(), phase: 'connected', mode: 'real', via: PAGE };
-      result('Ring sent to the real device.' + (roomOK() ? ' The video room opened in a new tab.' : ' Add the video room link in Demo controls so this button opens it for you.'));
+      result('Ring sent to the real device.' + (roomOK() ? ' If the video did not open by itself, tap the button below.' : ' Add the video room link in Demo controls so this button opens it for you.'), roomOK() ? settings.room : null);
     } else {
       state.live = { patient: pid, start: Date.now(), phase: 'ringing', mode: 'simulated', via: PAGE };
       result(p.real ? 'Simulated: no device channel is set, so nothing real rang. Open Demo controls to add one.' : p.first + ' is a demo patient with no device. Simulated visit.');
