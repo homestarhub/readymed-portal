@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RPM Platform (Demo Preview) | ReadyMed Visit Portal</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  [hidden] { display: none !important; }
+  .banner { background: var(--check-bg); color: var(--check-fg); border-bottom: 1px solid var(--check-bd); text-align: center; padding: 8px 16px; font-weight: 600; font-size: 14px; }
+  .wrap { width: 100%; max-width: 1000px; margin: 0 auto; padding: 24px 16px 40px; flex: 1; }
+  .login { max-width: 420px; margin: 40px auto; }
+  .login label { display: block; font-weight: 600; font-size: 14px; margin: 14px 0 6px; }
+  .login input { width: 100%; padding: 12px; border: 1px solid var(--border-strong); border-radius: 10px; font: inherit; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); }
+  th { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 16px; }
+  .stat { font-size: 32px; font-weight: 800; line-height: 1.1; }
+  .stat small { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .tick { color: var(--green); font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="banner">DEMO PREVIEW &mdash; a mock RPM platform for the ReadyMed demo. Not the real OmniMD. All patients and readings are simulated.</div>
+<header class="topbar">
+  <div class="brand">
+    <a href="clinician.html" aria-label="Back to the Clinician Room"><img src="readymed_logo.png" alt="ReadyMed Medical Solutions"></a>
+    <div class="divider"></div>
+    <div><div class="title">RPM Platform</div><div class="sub">Remote patient monitoring (demo preview)</div></div>
+  </div>
+  <div class="right" id="who" hidden>
+    <div class="chip">Demo clinician <span>(signed in)</span></div>
+    <button class="btn small" id="signout" type="button">Sign out</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="card login" id="login" aria-labelledby="lg-h">
+    <h2 id="lg-h">Clinician sign in</h2>
+    <form id="lg-form">
+      <label for="u">Username</label>
+      <input id="u" type="text" value="demo.clinician" autocomplete="off">
+      <label for="pw">Password</label>
+      <input id="pw" type="text" value="demo-only" autocomplete="off">
+      <div class="note" style="margin:10px 0 16px">Demo sign-in. No real account or password is used.</div>
+      <button class="btn primary" style="width:100%" type="submit">Sign in</button>
+    </form>
+  </section>
+
+  <div id="app" hidden>
+    <h2 style="margin:0 0 4px;font-size:22px">Margaret D.</h2>
+    <div class="small muted" style="margin-bottom:16px">Remote monitoring &middot; enrolled via HomeStar Hub</div>
+
+    <div class="grid">
+      <section class="card"><h3>Blood pressure</h3><div class="stat">118/76 <small>mmHg</small></div><div class="small muted">From the Bluetooth cuff, via HomeStar</div></section>
+      <section class="card"><h3>Pulse</h3><div class="stat">72 <small>bpm</small></div><div class="small muted">From the Bluetooth cuff</div></section>
+      <section class="card"><h3>Monitoring this month</h3><div class="stat">21 <small>days (goal: 16)</small></div><div class="small muted"><span class="tick">Reading-day goal met</span></div></section>
+    </div>
+
+    <section class="card" style="margin-bottom:16px">
+      <h3>Recent readings</h3>
+      <table>
+        <thead><tr><th>Date</th><th>Blood pressure</th><th>Pulse</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Today</td><td>118/76</td><td>72</td><td>Bluetooth cuff</td></tr>
+          <tr><td>Yesterday</td><td>122/80</td><td>75</td><td>Bluetooth cuff</td></tr>
+          <tr><td>2 days ago</td><td>120/78</td><td>70</td><td>Bluetooth cuff</td></tr>
+          <tr><td>3 days ago</td><td>126/82</td><td>78</td><td>Bluetooth cuff</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h3>Billing summary</h3>
+      <table>
+        <thead><tr><th>Item</th><th>This month</th></tr></thead>
+        <tbody>
+          <tr><td>Days with readings</td><td>21</td></tr>
+          <tr><td>Clinician time (video visits)</td><td>12 min</td></tr>
+          <tr><td>Status</td><td>Ready for review</td></tr>
+        </tbody>
+      </table>
+      <div class="note" style="margin-top:10px">Simulated figures for the demo. Camera-based biometrics estimates are experimental and are not shown here or used for billing.</div>
+    </section>
+  </div>
+</div>
+
+<footer>Demo preview. Patients, readings and billing figures are simulated.</footer>
+
+<script>
+(function () {
+  var login = document.getElementById('login'), app = document.getElementById('app'), who = document.getElementById('who');
+  function show(on) { login.hidden = on; app.hidden = !on; who.hidden = !on; }
+  document.getElementById('lg-form').addEventListener('submit', function (e) { e.preventDefault(); show(true); });
+  document.getElementById('signout').addEventListener('click', function () { show(false); });
+})();
+</script>
+</body>
+</html>
